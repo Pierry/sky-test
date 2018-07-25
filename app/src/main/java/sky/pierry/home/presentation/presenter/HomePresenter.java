@@ -23,7 +23,7 @@ public class HomePresenter implements IHomePresenter {
     App.getControllerComponent(context).inject(this);
   }
 
-  @Override public void inject(IHomeView homeView){
+  @Override public void inject(IHomeView homeView) {
     this.homeView = homeView;
   }
 
@@ -43,4 +43,7 @@ public class HomePresenter implements IHomePresenter {
     });
   }
 
+  @Override public void details(Movie movie) {
+    homeView.goToDetails(movie);
+  }
 }

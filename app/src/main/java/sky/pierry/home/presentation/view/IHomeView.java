@@ -8,4 +8,5 @@ public interface IHomeView extends IBaseView{
 
   void load(List<Movie> body);
 
+  void goToDetails(Movie movie);
 }

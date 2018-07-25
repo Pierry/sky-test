@@ -1,6 +1,7 @@
 package sky.pierry.home.presentation.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import javax.inject.Inject;
 import sky.pierry.R;
 import sky.pierry.core.App;
 import sky.pierry.core.domain.Movie;
+import sky.pierry.details.view.DetailsActivity;
 import sky.pierry.home.presentation.presenter.IHomePresenter;
 import sky.pierry.home.presentation.view.custom.HomeAdapter;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -45,12 +47,11 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
     toolbar.setTitle(getString(R.string.app_name));
     toolbar.setTitleTextColor(getResources().getColor(R.color.white));
     setSupportActionBar(toolbar);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setDisplayShowHomeEnabled(true);
   }
 
   @Override protected void onStart() {
     super.onStart();
+    homeAdapter.inject(presenter);
     config();
     adapter();
     presenter.inject(this);
@@ -74,6 +75,14 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
   @Override public void load(List<Movie> body) {
     homeAdapter.addItems(body);
     runOnUiThread(() -> homeAdapter.notifyDataSetChanged());
+  }
+
+  @Override public void goToDetails(Movie movie) {
+    Bundle bundle = new Bundle();
+    bundle.putParcelable("movie", movie);
+    Intent details = new Intent(this, DetailsActivity.class);
+    details.putExtras(bundle);
+    startActivity(details);
   }
 
   @Override public void showLoader() {

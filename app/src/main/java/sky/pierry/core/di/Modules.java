@@ -6,6 +6,9 @@ import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
 import sky.pierry.core.data.RetrofitClient;
+import sky.pierry.details.presenter.DetailsPresenter;
+import sky.pierry.details.presenter.IDetailsPresenter;
+import sky.pierry.details.view.custom.DetailsAdapter;
 import sky.pierry.home.data.Api;
 import sky.pierry.home.data.IApi;
 import sky.pierry.home.presentation.presenter.HomePresenter;
@@ -25,16 +28,24 @@ import sky.pierry.home.presentation.view.custom.HomeAdapter;
     return RetrofitClient.retrofit.create(RetrofitClient.class);
   }
 
-  @Provides @Singleton public IApi providesApi(){
+  @Provides @Singleton public IApi providesApi() {
     return new Api(context);
   }
 
-  @Provides @Singleton public IHomePresenter providesHomePresenter(){
+  @Provides @Singleton public IHomePresenter providesHomePresenter() {
     return new HomePresenter(context);
   }
 
-  @Provides @Singleton public HomeAdapter providesHomeAdapter(){
+  @Provides @Singleton public HomeAdapter providesHomeAdapter() {
     return new HomeAdapter();
+  }
+
+  @Provides @Singleton public IDetailsPresenter providesDetailsPresenter() {
+    return new DetailsPresenter();
+  }
+
+  @Provides @Singleton public DetailsAdapter providesDetailsAdapter() {
+    return new DetailsAdapter();
   }
 
   @Provides public Context context() {

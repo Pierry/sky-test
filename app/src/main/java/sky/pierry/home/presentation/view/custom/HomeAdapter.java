@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import java.util.List;
 import sky.pierry.R;
 import sky.pierry.core.domain.Movie;
+import sky.pierry.home.presentation.presenter.IHomePresenter;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeHolder> {
 
   private List<Movie> items;
+  private IHomePresenter presenter;
 
   public void addItems(List<Movie> movies) {
     this.items = movies;
@@ -23,7 +25,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeHolder> {
 
   @NonNull @Override public HomeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_adapter, parent, false);
-    return new HomeHolder(itemView);
+    return new HomeHolder(itemView, presenter);
   }
 
   @Override public void onBindViewHolder(@NonNull HomeHolder holder, int position) {
@@ -33,5 +35,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeHolder> {
 
   @Override public int getItemCount() {
     return items != null ? items.size() : 0;
+  }
+
+  public void inject(IHomePresenter presenter) {
+    this.presenter = presenter;
   }
 }

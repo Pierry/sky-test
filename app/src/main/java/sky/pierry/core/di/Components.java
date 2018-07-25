@@ -3,6 +3,7 @@ package sky.pierry.core.di;
 import android.content.Context;
 import dagger.Component;
 import javax.inject.Singleton;
+import sky.pierry.details.view.DetailsActivity;
 import sky.pierry.home.data.Api;
 import sky.pierry.home.presentation.presenter.HomePresenter;
 import sky.pierry.home.presentation.view.HomeActivity;
@@ -17,4 +18,5 @@ import sky.pierry.home.presentation.view.HomeActivity;
 
   void inject(HomeActivity homeActivity);
 
+  void inject(DetailsActivity detailsActivity);
 }

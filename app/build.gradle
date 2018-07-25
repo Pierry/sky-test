@@ -22,9 +22,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
 
   sourceDirectories = files([mainSrc])
   classDirectories = files([debugTree])
-  executionData = fileTree(dir: project.buildDir, includes: [
-      'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
-  ])
+  executionData =
+      fileTree(dir: project.buildDir, includes: ['jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'])
 }
 
 android {
@@ -47,6 +46,7 @@ android {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
+  sourceSets { main { res.srcDirs = ['src/main/res', 'src/test'] } }
 }
 
 dependencies {
@@ -87,8 +87,12 @@ dependencies {
   implementation 'com.android.support:recyclerview-v7:28.0.0-alpha3'
   implementation 'com.android.support:cardview-v7:28.0.0-alpha3'
 
+  implementation "com.romandanylyk:pageindicatorview:0.2.0"
+
+  androidTestImplementation "org.mockito:mockito-android:2.18.3"
   testImplementation "org.mockito:mockito-core:2.18.3"
   testImplementation 'junit:junit:4.12'
   androidTestImplementation 'com.android.support.test:runner:1.0.2'
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+  implementation 'com.android.support:support-v4:28.0.0-alpha3'
 }
