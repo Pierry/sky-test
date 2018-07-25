@@ -43,6 +43,18 @@ Para rodar esse projeto utilize uma das seguintes formas:
 - Instale o APK disponível na seção de release
 - Clone o repositório na sua máquina. Faça o build da aplicação utilizando Android Studio ou via terminal com ./gradlew assembleDebug
 
+Screenshots
+===========
+
+![](https://bitbucket.org/pieerry/sky-test/raw/bda80dc2e6ca232be00aa0d1d756a39c34ba4386/art/screen-1.png)
+
+![](https://bitbucket.org/pieerry/sky-test/raw/bda80dc2e6ca232be00aa0d1d756a39c34ba4386/art/screen-2.png)
+
+Demo
+====
+
+![](https://bitbucket.org/pieerry/sky-test/raw/bda80dc2e6ca232be00aa0d1d756a39c34ba4386/art/movie.gif)
+
 Licença
 =======
 
