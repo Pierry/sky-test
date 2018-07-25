@@ -9,8 +9,8 @@ import sky.pierry.core.data.RetrofitClient;
 import sky.pierry.details.presenter.DetailsPresenter;
 import sky.pierry.details.presenter.IDetailsPresenter;
 import sky.pierry.details.view.custom.DetailsAdapter;
-import sky.pierry.home.data.Api;
-import sky.pierry.home.data.IApi;
+import sky.pierry.home.presentation.model.HomeModel;
+import sky.pierry.home.presentation.model.IHomeModel;
 import sky.pierry.home.presentation.presenter.HomePresenter;
 import sky.pierry.home.presentation.presenter.IHomePresenter;
 import sky.pierry.home.presentation.view.custom.HomeAdapter;
@@ -28,8 +28,8 @@ import sky.pierry.home.presentation.view.custom.HomeAdapter;
     return RetrofitClient.retrofit.create(RetrofitClient.class);
   }
 
-  @Provides @Singleton public IApi providesApi() {
-    return new Api(context);
+  @Provides @Singleton public IHomeModel providesHomeModel() {
+    return new HomeModel(context);
   }
 
   @Provides @Singleton public IHomePresenter providesHomePresenter() {

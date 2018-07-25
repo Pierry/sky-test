@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +18,7 @@ import javax.inject.Inject;
 import sky.pierry.R;
 import sky.pierry.core.App;
 import sky.pierry.core.domain.Movie;
+import sky.pierry.core.support.ConnectionHelper;
 import sky.pierry.details.view.DetailsActivity;
 import sky.pierry.home.presentation.presenter.IHomePresenter;
 import sky.pierry.home.presentation.view.custom.HomeAdapter;
@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
     config();
     adapter();
     presenter.inject(this);
-    presenter.findAll();
+    presenter.onStart();
   }
 
   @Override protected void attachBaseContext(Context newBase) {
@@ -63,7 +63,6 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
   }
 
   private void config() {
-    LinearLayoutManager linearManager = new LinearLayoutManager(this);
     recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
   }
 
@@ -83,6 +82,14 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
     Intent details = new Intent(this, DetailsActivity.class);
     details.putExtras(bundle);
     startActivity(details);
+  }
+
+  @Override public void error(String message) {
+    runOnUiThread(() -> Toast.makeText(this, message, Toast.LENGTH_SHORT).show());
+  }
+
+  @Override public boolean isConnected() {
+    return ConnectionHelper.isConnected(this);
   }
 
   @Override public void showLoader() {
