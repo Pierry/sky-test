@@ -7,6 +7,9 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.squareup.picasso.Picasso;
+import jp.wasabeef.picasso.transformations.CropSquareTransformation;
+import jp.wasabeef.picasso.transformations.MaskTransformation;
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 import sky.pierry.R;
 import sky.pierry.core.domain.Movie;
 
@@ -21,7 +24,10 @@ public class HomeHolder extends RecyclerView.ViewHolder {
   }
 
   public void bind(Movie movie) {
+    if (!movie.isValid()){
+      return;
+    }
     movieTitle.setText(movie.getTitle());
-    Picasso.get().load(movie.getCoverUrl()).into(cover);
+    Picasso.get().load(movie.getCoverUrl()).transform(new RoundedCornersTransformation(30, 0)).error(R.mipmap.icon_no_item).into(cover);
   }
 }

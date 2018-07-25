@@ -1,5 +1,6 @@
 package sky.pierry.home.presentation.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import sky.pierry.core.App;
 import sky.pierry.core.domain.Movie;
 import sky.pierry.home.presentation.presenter.IHomePresenter;
 import sky.pierry.home.presentation.view.custom.HomeAdapter;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class HomeActivity extends AppCompatActivity implements IHomeView {
 
@@ -53,6 +55,10 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
     adapter();
     presenter.inject(this);
     presenter.findAll();
+  }
+
+  @Override protected void attachBaseContext(Context newBase) {
+    super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
   }
 
   private void config() {

@@ -17,6 +17,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeHolder> {
     this.items = movies;
   }
 
+  public List<Movie> getItems() {
+    return items;
+  }
+
   @NonNull @Override public HomeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_adapter, parent, false);
     return new HomeHolder(itemView);

@@ -68,4 +68,8 @@ public class Movie {
   public void setTitle(String title) {
     this.title = title;
   }
+
+  public boolean isValid() {
+    return title != null && !title.isEmpty();
+  }
 }
